@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5c891e7246af882b38f6da7d8368eefed9a4e866db79acde58a8c2f098956687"
+            "sha256": "dbd8e66386113d75be4eb8a9f39b1bac5bf8a928cdd25a02090cd53f9ed14a33"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,7 +30,6 @@
                 "sha256:a8228522c7db33694c0746dec8b48c05473671626359dd62ab6829eb7871eddc"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
             "version": "==1.28.66"
         },
         "botocore": {
@@ -151,7 +150,6 @@
                 "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
             "version": "==8.1.7"
         },
         "click-plugins": {
@@ -205,7 +203,6 @@
                 "sha256:e5b56d9c20800c77bcc0c914db3f27447a37b23b2cd892be543f5001a694a968"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==0.13.2"
         },
         "idna": {
@@ -303,7 +300,6 @@
                 "sha256:fcd471c9d9f60926ab2f15c6c29164112f458acb42280365fbefa542d0c2fc74"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
             "version": "==2.0.0"
         },
         "pyproj": {
@@ -368,7 +364,6 @@
                 "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
             "version": "==2.31.0"
         },
         "s3transfer": {
@@ -474,7 +469,6 @@
                 "sha256:2913064abd97b3419d1cc83ea71f042cb821f87e45b9c88cad5ad3c4ea87fe0c"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.6'",
             "version": "==2.0.4"
         },
         "pycodestyle": {

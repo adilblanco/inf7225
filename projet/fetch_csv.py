@@ -2,14 +2,12 @@ import os
 import click
 import shutil
 import logging
-import pandas as pd
-import geopandas as gpd
+
 from s3 import S3FileHandler
+from common import process_data, create_geodataframe
 
 logging.basicConfig(level=logging.INFO)
 
-WGS84=4326
-MTM8=32188
 
 @click.command()
 @click.option(
@@ -29,29 +27,17 @@ MTM8=32188
 )
 def main(command, file_key, url):
     if command == "fetch_csv":
-        fetch_csv(file_key, url)
+        handle(file_key, url)
 
 
-def process_data(url):
-    df = pd.read_csv(url)
-    return df
-
-
-def create_geodataframe(df):
-    gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.Longitude, df.Latitude)).set_crs(f"epsg:{WGS84}")
-    return gdf
-
-
-def fetch_csv(file_key, url):
+def handle(file_key, url):
     logging.info(f"Retrieving the CSV file from URL {url} with key {file_key} ...")
     
     s3_bucket = os.environ["S3_BUCKET"]
     s3_endpoint = os.environ["S3_ENDPOINT"]
     s3_access_key = os.environ["S3_ACCESS_KEY"]
     s3_secret_key = os.environ["S3_SECRET_KEY"]
-    
-    # url="https://donnees.montreal.ca/dataset/3ff400f3-63cd-446d-8405-842383377fb8/resource/26659739-540d-4fe2-8107-5f35ab7e807c/download/fontaine_eau_potable_v2018.csv"
-    
+        
     df = process_data(url)
     gdf = create_geodataframe(df)
     gdf.info()

@@ -24,6 +24,7 @@ RUN pip install -r requirements.txt
 
 # Copiez vos scripts dans le conteneur
 COPY s3.py /app/s3.py
+COPY common.py /app/common.py
 COPY fetch_csv.py /app/fetch_csv.py
 COPY fetch_geo.py /app/fetch_geo.py
 
