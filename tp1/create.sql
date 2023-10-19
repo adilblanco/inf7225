@@ -1,0 +1,117 @@
+CREATE TABLE SPECIALITE (
+    code NUMBER NOT NULL PRIMARY KEY,
+    titre VARCHAR2(255) NOT NULL,
+    description VARCHAR2(255) NOT NULL
+);
+
+CREATE TABLE CATEGORIES (
+    IdCategorie NUMBER NOT NULL PRIMARY KEY,
+    nom VARCHAR2(255) UNIQUE NOT NULL,
+    description VARCHAR2(255)
+);
+
+CREATE TABLE SALLE (
+    idSalle NUMBER NOT NULL PRIMARY KEY,
+    nom VARCHAR2(255)
+);
+
+CREATE TABLE TYPECHIRURGIE (
+    IdType NUMBER NOT NULL PRIMARY KEY,
+    nom VARCHAR2(255) UNIQUE NOT NULL,
+    description VARCHAR2(255)
+);
+
+CREATE TABLE DOCTEUR (
+    matricule NUMBER NOT NULL PRIMARY KEY,
+    nomM VARCHAR2(255) NOT NULL,
+    prenomM VARCHAR2(255) NOT NULL,
+    specialite NUMBER NOT NULL,
+    titre VARCHAR2(255),
+    ville VARCHAR2(255) NOT NULL,
+    adresse VARCHAR2(255) NOT NULL,
+    niveau VARCHAR2(255) NOT NULL CHECK (niveau IN (' ́Etudiant', 'Interne', 'Docteur')),
+    FOREIGN KEY (specialite) REFERENCES SPECIALITE(code)
+);
+
+CREATE TABLE ORDONNANCE (
+    numOrd NUMBER NOT NULL PRIMARY KEY,
+    recommandations VARCHAR2(255),
+    typeOrd VARCHAR2(255) NOT NULL CHECK (typeOrd IN ('Chirurgie', 'M ́edicaments')),
+    dateC DATE NOT NULL,
+    numOrdPrinc NUMBER,
+    FOREIGN KEY (numOrdPrinc) REFERENCES ORDONNANCE(numOrd)
+);
+
+CREATE TABLE CHIRURGIE (
+    idChir NUMBER NOT NULL PRIMARY KEY,
+    idType NUMBER NOT NULL,
+    idSalle NUMBER NOT NULL,
+    dateChirurgie DATE NOT NULL,
+    HeureDebut NUMBER CHECK (HeureDebut >= 0),
+    HeureFin NUMBER CHECK (HeureFin >= 0),
+    UNIQUE (idSalle, dateChirurgie, HeureDebut),
+    FOREIGN KEY (idType) REFERENCES TYPECHIRURGIE(IdType),
+    FOREIGN KEY (idSalle) REFERENCES SALLE(idSalle)
+);
+
+CREATE TABLE MEDICAMENT (
+    idMed NUMBER NOT NULL PRIMARY KEY,
+    nomMed VARCHAR2(255) UNIQUE NOT NULL,
+    prix NUMBER DEFAULT 0 CHECK (prix >= 0),
+    idCategorie NUMBER NOT NULL,
+    UNIQUE (nomMed, idCategorie),
+    FOREIGN KEY (idCategorie) REFERENCES CATEGORIES(IdCategorie)
+);
+
+CREATE TABLE DOSSIERPATIENT (
+    numDos NUMBER NOT NULL PRIMARY KEY,
+    nomP VARCHAR2(255) NOT NULL,
+    prenomP VARCHAR2(255) NOT NULL,
+    NomJeuneFille VARCHAR2(255),
+    genre CHAR(1) NOT NULL CHECK (genre IN ('F', 'M')),
+    numAS NUMBER UNIQUE NOT NULL,
+    dateNaiss DATE NOT NULL,
+    dateC DATE NOT NULL,
+    matricule NUMBER NOT NULL,
+    FOREIGN KEY (matricule) REFERENCES DOCTEUR(matricule)
+);
+
+CREATE TABLE CONSULTATION (
+    CodeDocteur NUMBER NOT NULL,
+    numDos NUMBER NOT NULL,
+    dateC DATE NOT NULL,
+    diagnostic VARCHAR2(255) NOT NULL,
+    numOrd NUMBER NOT NULL,
+    PRIMARY KEY (CodeDocteur, numDos, dateC),
+    FOREIGN KEY (CodeDocteur) REFERENCES DOCTEUR(matricule),
+    FOREIGN KEY (numDos) REFERENCES DOSSIERPATIENT(numDos),
+    FOREIGN KEY (numOrd) REFERENCES ORDONNANCE(numOrd)
+);
+
+CREATE TABLE ORDONNANCECHIRURGIE (
+    numOrd NUMBER NOT NULL,
+    idChir NUMBER NOT NULL,
+    rang NUMBER NOT NULL,
+    PRIMARY KEY (numOrd, idChir),
+    UNIQUE (numOrd, rang),
+    FOREIGN KEY (numOrd) REFERENCES ORDONNANCE(numOrd),
+    FOREIGN KEY (idChir) REFERENCES CHIRURGIE(idChir)
+);
+
+CREATE TABLE SPECIALISATIONSALLE (
+    IdType NUMBER NOT NULL,
+    idSalle NUMBER NOT NULL,
+    dateC DATE NOT NULL,
+    PRIMARY KEY (IdType, idSalle),
+    FOREIGN KEY (IdType) REFERENCES TYPECHIRURGIE(IdType),
+    FOREIGN KEY (idSalle) REFERENCES SALLE(idSalle)
+);
+
+CREATE TABLE ORDONNANCEMEDICAMENTS (
+    numOrd NUMBER NOT NULL,
+    idMed NUMBER NOT NULL,
+    nbBoites NUMBER DEFAULT 0 CHECK (nbBoites >= 0),
+    PRIMARY KEY (numOrd, idMed),
+    FOREIGN KEY (numOrd) REFERENCES ORDONNANCE(numOrd),
+    FOREIGN KEY (idMed) REFERENCES MEDICAMENT(idMed)
+);
