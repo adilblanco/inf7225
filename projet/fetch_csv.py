@@ -56,6 +56,8 @@ def handle(file_key, url):
     # Supprimez le répertoire de travail après avoir terminé
     shutil.rmtree(working_dir)
 
+    logging.info(f"CSV file retrieval for {file_key} completed.")
+
 
 if __name__ == "__main__":
     main()
