@@ -4,8 +4,12 @@
 
 ### Objectif :
 Le projet vise à améliorer l'accès à l'eau potable dans les parcs de la ville de Montréal en optimisant l'emplacement des fontaines publiques. Pour ce faire, nous utiliserons des données provenant de différentes sources, en mettant particulièrement l'accent sur les données ouvertes fournies par la Ville de Montréal.
-- Données sur les parcs : [Lien vers les données](https://example.com/parcs-montreal-data)
-- Données sur les pistes cyclables : [Lien vers les données](https://example.com/cyclable-data)
+- Ruelles vertes : [Lien vers les donnée](https://donnees.montreal.ca/dataset/ruelles-vertes)
+- Réseau cyclable : [Lien vers les données](https://donnees.montreal.ca/dataset/pistes-cyclables)
+- Réseau express vélo (REV) : [Lien vers les données](https://donnees.montreal.ca/dataset/reseau-express-velo)
+- Fontaines à boire extérieures : [Lien vers les données](https://donnees.montreal.ca/dataset/fontaines-a-boire-eau-exterieures)
+- Mobilier urbain dans les grands parcs : [Lien vers les donnée](https://donnees.montreal.ca/dataset/mobilierurbaingp)
+- Grands parcs, parcs d'arrondissements et espaces publics : [Lien vers les données](https://donnees.montreal.ca/dataset/grands-parcs-parcs-d-arrondissements-et-espaces-publics)
 
 ### Méthodologie :
 
@@ -40,10 +44,6 @@ Vous pouvez installer les bibliothèques Python nécessaires en utilisant `pip`.
 
 ## Références
 
-- Données sur les parcs : [Lien vers les données](https://example.com/parcs-montreal-data)
-- Données sur les pistes cyclables : [Lien vers les données](https://example.com/cyclable-data)
-- Documentation de pandas : [https://pandas.pydata.org/](https://pandas.pydata.org/)
-- Documentation de requests : [https://docs.python-requests.org/en/master/](https://docs.python-requests.org/en/master/)
-- Site officiel de Docker : [https://www.docker.com/](https://www.docker.com/)
-- ...
-
+- Astronomer : [Lien](https://www.astronomer.io/)
+- Astronomer (registry): [Lien](https://registry.astronomer.io/)
+- Data pipelines with Apache Airflow (Livre): [Lien](https://www.astronomer.io/ebooks/data-pipelines-with-apache-airflow/)
