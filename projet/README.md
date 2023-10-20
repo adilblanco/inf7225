@@ -10,6 +10,7 @@ Le projet vise à améliorer l'accès à l'eau potable dans les parcs de la vill
 - Fontaines à boire extérieures : [Lien vers les données](https://donnees.montreal.ca/dataset/fontaines-a-boire-eau-exterieures)
 - Mobilier urbain dans les grands parcs : [Lien vers les donnée](https://donnees.montreal.ca/dataset/mobilierurbaingp)
 - Grands parcs, parcs d'arrondissements et espaces publics : [Lien vers les données](https://donnees.montreal.ca/dataset/grands-parcs-parcs-d-arrondissements-et-espaces-publics)
+- Installations récréatives, sportives et culturelles extérieures : [Lien vers les données](https://donnees.montreal.ca/dataset/installations-recreatives-sportives-et-culturelles)
 
 ### Méthodologie :
 
