@@ -42,7 +42,7 @@ def handle(file_key, url):
         
     http_response = process_request(url)
     gdf = json_items_to_geodataframe(http_response)
-    gdf.info()
+    gdf.info(memory_usage="deep")
     
     # Répertoire de travail pour les fichiers locaux
     working_dir = "working_directory"

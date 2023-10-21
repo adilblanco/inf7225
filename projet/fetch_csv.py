@@ -40,7 +40,7 @@ def handle(file_key, url):
         
     df = process_data(url)
     gdf = create_geodataframe(df)
-    gdf.info()
+    gdf.info(memory_usage="deep")
     
     # Répertoire de travail pour les fichiers locaux
     working_dir = "working_directory"
