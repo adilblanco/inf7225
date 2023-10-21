@@ -1,9 +1,8 @@
-import requests
 import pandas as pd
 import geopandas as gpd
 
-WGS84=4326
-MTM8=32188
+WGS84 = 4326
+MTM8 = 32188
 
 
 def process_data(url):
