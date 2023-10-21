@@ -4,7 +4,8 @@ import logging
 import pandas as pd
 
 from s3 import S3FileHandler
-from common import prepare_data, create_geodataframe
+from common import (create_geodataframe, get_nearest_fountains, 
+                    calculate_nearest_fountains_info, prepare_data)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,9 +28,21 @@ def handle(file_key, optinal_file_key):
 
     df = pd.read_pickle(os.path.join(working_dir, file_key))
     gdf = create_geodataframe(df)
+    gdf.columns = gdf.columns.str.lower()
+    
+    # Conservez une copie de toutes les colonnes existantes
+    keep_columns = list(gdf.columns)
+    # Calculer les fontaines les plus proches
+    gdf = get_nearest_fountains(gdf)
+    # Calculer la distance et l'ID de la fontaine la plus proche
+    result = gdf.apply(lambda row: calculate_nearest_fountains_info(row, gdf), axis=1)
+    # Ajouter les colonnes résultantes au GeoDataFrame
+    gdf['distance_meters'] = result['distance_meters']
+    gdf['closest_fountain_id'] = result['closest_fountain_id']
+    # Réinsérer toutes les colonnes existantes dans le GeoDataFrame résultant
+    gdf = gdf[keep_columns + ['distance_meters', 'closest_fountain_id']]
+    # Proejction en metres MTM8
     gdf = prepare_data(gdf)
-    gdf = gdf.drop(columns=['latitude', 'longitude', 'x', 'y'])
-    gdf.info(memory_usage="deep")
 
     # Sauvegarder le fichier en local, utilisez la méthode upload() de S3FileHandler pour téléverser le fichier vers S3
     gdf.to_pickle(os.path.join(working_dir, optinal_file_key))
