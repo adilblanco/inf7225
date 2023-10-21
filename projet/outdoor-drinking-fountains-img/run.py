@@ -16,19 +16,22 @@ from transform_data import handle as main_tranform_data
     type=str
 )
 @click.option(
-    '--file_key',
-    required=True,
+    '--input_file_key',
     type=str
 )
+# @click.option(
+#     '--otptional_file_key',
+#     type=str
+# )
 @click.option(
-    '--optional_file_key',
+    '--output_file_key',
     type=str
 )
-def main(command, file_key, url, optional_file_key):
+def main(command, output_file_key, input_file_key, url):
     if command == "fetch_data":
-        main_fetch_data(file_key, url)
+        main_fetch_data(output_file_key, url)
     elif command == "transform_data":
-        main_tranform_data(file_key, optional_file_key)
+        main_tranform_data(input_file_key, output_file_key)
         
 if __name__ == '__main__':
     main()
