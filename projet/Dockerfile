@@ -14,11 +14,6 @@ ENV PYTHONPATH="/app"
 # Cela signifie que lorsque vous exécutez des commandes telles que COPY, RUN, ou CMD, elles s'appliqueront à partir du répertoire "/app" par défaut
 WORKDIR /app
 
-ENV S3_ENDPOINT="http://172.17.0.3:9000"
-ENV S3_ACCESS_KEY="minioadmin"
-ENV S3_SECRET_KEY="minioadmin"
-ENV S3_BUCKET="inf7225"
-
 # Installez pipenv & packages
 RUN pip install pipenv
 RUN pipenv requirements > requirements.txt
@@ -28,6 +23,7 @@ RUN pip install -r requirements.txt
 # Copiez vos scripts dans le conteneur
 COPY s3.py /app/s3.py
 COPY common.py /app/common.py
+COPY filter.py /app/filter.py
 COPY fetch_csv.py /app/fetch_csv.py
 COPY fetch_geo.py /app/fetch_geo.py
 

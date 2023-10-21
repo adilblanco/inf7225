@@ -55,9 +55,17 @@ def handle(in_file_key, out_file_key, columns):
     gdf = pd.read_pickle(os.path.join(working_dir, in_file_key))
     gdf = prepare_data(gdf)
 
+    ## keep following columns
+    # if columns:
+    #     columns = columns.split()
+    #     gdf = gdf.loc[:, columns]
+    
+    ## exclude following columns 
     if columns:
         columns = columns.split()
-        gdf = gdf.loc[:, columns]
+        columns = [col.strip() for col in columns]
+        gdf = gdf.drop(columns=columns)
+
 
     # Sauvegarder le fichier en local
     gdf.to_pickle(os.path.join(working_dir, out_file_key))
