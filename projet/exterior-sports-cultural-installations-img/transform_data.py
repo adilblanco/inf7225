@@ -3,6 +3,7 @@ import shutil
 import logging
 import pandas as pd
 from s3 import S3FileHandler
+from common import prepare_data
 
 logging.basicConfig(level=logging.INFO)
 
@@ -24,8 +25,7 @@ def handle(input_file_key, output_file_key, columns):
     s3_handler.download(input_file_key, os.path.join(working_dir, input_file_key))
 
     gdf = pd.read_pickle(os.path.join(working_dir, input_file_key))
-    gdf.columns = gdf.columns.str.lower()
-    gdf = gdf.set_crs('epsg:4326')
+    gdf = prepare_data(gdf)
 
     if columns:
         columns = columns.split()
