@@ -4,35 +4,35 @@ services:
   cycling-network:
     build:
       context: ./cycling-network-img 
-    image: uqam/cycling-network-img:1.0.0
+    image: uqam/cycling-network-img:${IMAGE_TAG}
 
   express-bike-network:
     build:
       context: ./express-bike-network-img 
-    image: uqam/express-bike-network-img:1.0.0
+    image: uqam/express-bike-network-img:${IMAGE_TAG}
 
   exterior-sports-cultural-installations:
     build:
       context: ./exterior-sports-cultural-installations-img
-    image: uqam/exterior-sports-cultural-installations-img:1.0.0
+    image: uqam/exterior-sports-cultural-installations-img:${IMAGE_TAG}
 
   large-parks-and-public-spaces:
     build:
       context: ./large-parks-and-public-spaces-img
-    image: uqam/large-parks-and-public-spaces-img:1.0.0
+    image: uqam/large-parks-and-public-spaces-img:${IMAGE_TAG}
 
   outdoor-drinking-fountains:
     build:
       context: ./outdoor-drinking-fountains-img
-    image: uqam/outdoor-drinking-fountains-img:1.0.0
+    image: uqam/outdoor-drinking-fountains-img:${IMAGE_TAG}
 
   park-furnishings:
     build:
       context: ./park-furnishings-img
-    image: uqam/park-furnishings-img:1.0.0
+    image: uqam/park-furnishings-img:${IMAGE_TAG}
 
   urban-green-streets:
     build:
       context: ./urban-green-streets-img
-    image: uqam/urban-green-streets-img:1.0.0
+    image: uqam/urban-green-streets-img:${IMAGE_TAG}
   
