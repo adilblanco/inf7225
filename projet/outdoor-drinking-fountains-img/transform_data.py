@@ -4,7 +4,7 @@ import logging
 import pandas as pd
 
 from s3 import S3FileHandler
-from common import create_geodataframe
+from common import create_geodataframe, prepare_data
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,8 +27,7 @@ def handle(file_key, input_file_key, columns):
 
     df = pd.read_pickle(os.path.join(working_dir, file_key))
     gdf = create_geodataframe(df)
-    gdf.columns = gdf.columns.str.lower()
-    gdf = gdf.set_crs('epsg:4326')
+    gdf = prepare_data(gdf)
     
     if columns:
         columns = columns.split()
