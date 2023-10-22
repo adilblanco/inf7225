@@ -28,6 +28,7 @@ def handle(file_key, input_file_key, columns):
     df = pd.read_pickle(os.path.join(working_dir, file_key))
     gdf = create_geodataframe(df)
     gdf.columns = gdf.columns.str.lower()
+    gdf = gdf.set_crs('epsg:4326')
     
     if columns:
         columns = columns.split()
