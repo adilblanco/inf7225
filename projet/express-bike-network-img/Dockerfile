@@ -1,10 +1,5 @@
 FROM python:3.8-slim
 
-ENV S3_ENDPOINT="http://172.17.0.2:9000"
-ENV S3_ACCESS_KEY="minioadmin"
-ENV S3_SECRET_KEY="minioadmin"
-ENV S3_BUCKET="inf7225"
-
 # Mettez à jour les paquets et installez les dépendances nécessaires pour pipenv
 RUN apt-get update && apt-get install -y \
     gcc \
